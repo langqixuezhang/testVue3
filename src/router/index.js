@@ -11,16 +11,22 @@ const routes = [
       } else next()
     }
   }, {
-    path: '/home',
+    path: '/loge',
+    component: Home,
+    beforeEnter: (to, from, next) => {
+      if (to.path === '/login') {
+        next('home/loge')
+      }else next()
+    }
+  }, {
+    path: '/home/',
     name: 'home',
     component: Home,
-    children: [
-      {
-        path: 'login',
-        component:Login
-      }
-    ]
-  }
+    children: [{
+      path: 'login',
+      component: Login
+    }]
+   }
 ]
 
 const router = createRouter({
